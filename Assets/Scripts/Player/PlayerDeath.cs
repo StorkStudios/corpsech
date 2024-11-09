@@ -18,6 +18,8 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField]
     private GameObject ragdollPrefab;
 
+    private bool isDead = false;
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Deadly"))
@@ -36,12 +38,21 @@ public class PlayerDeath : MonoBehaviour
 
     public void DieWithoutRagdoll()
     {
+        if (isDead)
+        {
+            return;
+        }
         MessageBroker.Instance.Events.Invoke(MessageBroker.EventType.PlayerDeath, new PlayerDeathEventArgs(transform.position));
         Destroy(gameObject);
+        isDead = true;
     }
 
     public void Die()
     {
+        if (isDead)
+        {
+            return;
+        }
         SpawnRagdoll();
         DieWithoutRagdoll();
     }
