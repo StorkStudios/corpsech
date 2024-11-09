@@ -54,10 +54,10 @@ MonoBehaviour:
   moveSpeed: 3
   jumpForce: 5
   groundCheck: {fileID: 6360221171704593357}
-  groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  maxJumpVelocity: 0
 --- !u!50 &2459086787510083149
 Rigidbody2D:
   serializedVersion: 4

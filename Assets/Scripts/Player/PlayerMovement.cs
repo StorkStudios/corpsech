@@ -4,13 +4,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    [SerializeField]
+    private float moveSpeed = 5f;
+    
+    [SerializeField]
+    private float jumpForce = 10f;
     
     [Header("Ground Check")]
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
+    [SerializeField]
+    private Transform groundCheck;
+    
+    [SerializeField]
+    private LayerMask groundLayer;
+
+    [Header("Jump config")]
+    [SerializeField]
+    private float maxJumpVelocity;
 
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -26,7 +35,9 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) && groundDetector.IsGrounded)
+        if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) &&
+            groundDetector.IsGrounded &&
+            Mathf.Abs(rb.velocity.y) <= maxJumpVelocity)
         {
             Jump();
         }

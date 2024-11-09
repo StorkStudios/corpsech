@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerDeath))]
+[RequireComponent(typeof(PlayerGroundDetector))]
 public class PlayerFallDamage : MonoBehaviour
 {
     [SerializeField]
@@ -11,12 +12,15 @@ public class PlayerFallDamage : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerDeath playerDeath;
+    private PlayerGroundDetector groundDetector;
     private float lastYVelocity;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerDeath = GetComponent<PlayerDeath>();
+        groundDetector = GetComponent<PlayerGroundDetector>();
+        groundDetector.GroundStateChanged += OnGroundStateChanged;
     }
 
     private void FixedUpdate()
@@ -24,10 +28,9 @@ public class PlayerFallDamage : MonoBehaviour
         lastYVelocity = rb.velocity.y;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnGroundStateChanged(bool groundState)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") &&
-            lastYVelocity < thresholdVelocity)
+        if (groundState && lastYVelocity < thresholdVelocity)
         {
             playerDeath.Die();
         }
