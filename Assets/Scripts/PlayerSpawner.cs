@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class PlayerSpawner : Singleton<PlayerSpawner>
 {
+    public class PlayerSpawnedEventArgs : MessageBroker.EventArgs
+    {
+        public PlayerSpawnedEventArgs(Transform playerTransform)
+        {
+            PlayerTransform = playerTransform;
+        }
+
+        public Transform PlayerTransform { get; private set; }
+    }
+
     [SerializeField]
     private GameObject playerPrefab;
 
@@ -14,6 +24,7 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
 
     public void SpawnPlayer()
     {
-        Instantiate(playerPrefab, transform.position, transform.rotation);
+        GameObject playerObject = Instantiate(playerPrefab, transform.position, transform.rotation);
+        MessageBroker.Instance.Events.Invoke(MessageBroker.EventType.PlayerSpawned, new PlayerSpawnedEventArgs(playerObject.transform));
     }
 }
