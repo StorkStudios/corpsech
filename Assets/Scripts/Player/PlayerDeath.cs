@@ -34,14 +34,13 @@ public class PlayerDeath : MonoBehaviour
         }
     }
 
-    private void DieWithoutRagdoll()
+    public void DieWithoutRagdoll()
     {
-        PlayerSpawner.Instance.SpawnPlayer();
         MessageBroker.Instance.Events.Invoke(MessageBroker.EventType.PlayerDeath, new PlayerDeathEventArgs(transform.position));
         Destroy(gameObject);
     }
 
-    private void Die()
+    public void Die()
     {
         SpawnRagdoll();
         DieWithoutRagdoll();

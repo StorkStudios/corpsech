@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawner : Singleton<PlayerSpawner>
+public class PlayerSpawner : MonoBehaviour
 {
     public class PlayerSpawnedEventArgs : MessageBroker.EventArgs
     {
@@ -20,9 +20,10 @@ public class PlayerSpawner : Singleton<PlayerSpawner>
     private void Start()
     {
         SpawnPlayer();
+        MessageBroker.Instance.Events.AddListener(MessageBroker.EventType.PlayerDeath, (_) => SpawnPlayer());
     }
 
-    public void SpawnPlayer()
+    private void SpawnPlayer()
     {
         GameObject playerObject = Instantiate(playerPrefab, transform.position, transform.rotation);
         MessageBroker.Instance.Events.Invoke(MessageBroker.EventType.PlayerSpawned, new PlayerSpawnedEventArgs(playerObject.transform));
