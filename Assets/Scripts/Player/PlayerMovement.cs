@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerGroundDetector))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -12,21 +13,20 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
-    private bool isGrounded;
     private float horizontalInput;
+    private PlayerGroundDetector groundDetector;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        groundDetector = GetComponent<PlayerGroundDetector>();
     }
 
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) && isGrounded)
+        if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) && groundDetector.IsGrounded)
         {
             Jump();
         }
@@ -40,14 +40,5 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-    }
-
-    void OnDrawGizmos()
-    {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        }
     }
 }
