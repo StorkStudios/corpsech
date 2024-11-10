@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
     
     private Transform playerTransform;
 
-    private void Start()
+    private void Awake()
     {
         MessageBroker.Instance.Events.AddListener(MessageBroker.EventType.PlayerSpawned, (args) =>
         {

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4139647737974581322}
   - component: {fileID: 1055231032002269675}
   - component: {fileID: 6333721968761700496}
+  - component: {fileID: 8164384842002109008}
   m_Layer: 6
-  m_Name: Ragdoll
-  m_TagString: Untagged
+  m_Name: Corpse
+  m_TagString: Corpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,8 +33,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4834225788574404042}
   - {fileID: 8846562235200780669}
+  - {fileID: 990545984985994924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4139647737974581322
@@ -120,6 +121,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8baa4d0e8a4031fbef0b19bd1aa4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8164384842002109008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495363586385253022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063fd748663fd724db4692dc37c751cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referencePoint: {fileID: 990545984985994924}
+  spriteRenderer: {fileID: 6021190023334064398}
+  highlightedColor: {r: 0.2783019, g: 0.61604244, b: 1, a: 1}
 --- !u!1 &3917759067491727981
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +148,7 @@ GameObject:
   - component: {fileID: 6021190023334064398}
   m_Layer: 6
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Corpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +220,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &8727634201122053144
+--- !u!1 &7545049908300957642
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,24 +228,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4834225788574404042}
-  m_Layer: 6
-  m_Name: GroundCheck
+  - component: {fileID: 990545984985994924}
+  m_Layer: 0
+  m_Name: ReferencePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4834225788574404042
+--- !u!4 &990545984985994924
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727634201122053144}
+  m_GameObject: {fileID: 7545049908300957642}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

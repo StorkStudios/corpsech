@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerCorpsePickuper))]
 public class PlayerGroundDetector : MonoBehaviour
 {
     [SerializeField]
@@ -13,18 +15,31 @@ public class PlayerGroundDetector : MonoBehaviour
     private LayerMask groundLayers;
 
     public bool IsGrounded { get; private set; }
+    public bool IsStandingOnCorpse { get; private set; }
     private bool lastGroundedState = false;
 
+    private PlayerCorpsePickuper pickuper;
+
     public event Action<bool> GroundStateChanged;
+
+    private readonly Collider2D[] groundCollidersBuffer = new Collider2D[10];
+
+
+    private void Start()
+    {
+        pickuper = GetComponent<PlayerCorpsePickuper>();
+    }
 
     private void FixedUpdate()
     {
         lastGroundedState = IsGrounded;
-        IsGrounded = Physics2D.OverlapBox(detectionPosition.position, detectionSize, 0, groundLayers);
+        int groundCollidersCount = Physics2D.OverlapBoxNonAlloc(detectionPosition.position, detectionSize, 0, groundCollidersBuffer, groundLayers);
+        IsGrounded = groundCollidersCount > 0;
         if (IsGrounded != lastGroundedState)
         {
             GroundStateChanged?.Invoke(IsGrounded);
         }
+        pickuper.HandleCorpseCollisions(groundCollidersBuffer, groundCollidersCount);
     }
 
     void OnDrawGizmos()

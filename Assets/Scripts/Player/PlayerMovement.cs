@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private PlayerGroundDetector groundDetector;
 
+    [SerializeField, ReadOnly]
+    private bool facingRight;
+    public bool FacingRight => facingRight;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        facingRight = rb.velocity.x > 0 || (rb.velocity.x == 0 && facingRight);
     }
 
     void Jump()
