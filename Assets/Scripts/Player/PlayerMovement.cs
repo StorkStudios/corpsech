@@ -51,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
         facingRight = rb.velocity.x > 0 || (rb.velocity.x == 0 && facingRight);
+        Vector3 scale = transform.localScale;
+        scale.x = facingRight ? 1 : -1;
+        transform.localScale = scale;
     }
 
     void Jump()

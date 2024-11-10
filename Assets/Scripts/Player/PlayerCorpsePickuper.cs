@@ -5,16 +5,40 @@ using UnityEngine;
 public class PlayerCorpsePickuper : MonoBehaviour
 {
     [SerializeField]
-    private Transform referencePoint;
+    private Transform pickupReferencePoint;
+    [SerializeField]
+    private Transform throwReferencePoint;
+    [SerializeField]
+    private Vector3 throwForce;
+    [SerializeField]
+    private GameObject corpsePrefab;
 
     private CorpseController corpseToPickup;
     private float corpseToPickupPositionDelta = float.NegativeInfinity;
 
     private PlayerMovement movement;
 
+    [SerializeField, ReadOnly]
+    private bool corpsePickedUp;
+
     private void Start()
     {
         movement = GetComponent<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (corpseToPickup != null && !corpsePickedUp)
+            {
+                PickupCorpse();
+            }
+            else if (corpsePickedUp)
+            {
+                ThrowCorpse();
+            }
+        }
     }
 
     public void HandleCorpseCollisions(Collider2D[] colliders, int collidersCount)
@@ -35,12 +59,29 @@ public class PlayerCorpsePickuper : MonoBehaviour
         }
     }
 
+    private void PickupCorpse()
+    {
+        corpsePickedUp = true;
+        Destroy(corpseToPickup.gameObject);
+        corpseToPickup = null;
+        corpseToPickupPositionDelta = float.NegativeInfinity;
+    }
+
+    private void ThrowCorpse()
+    {
+        GameObject corpse = Instantiate(corpsePrefab, throwReferencePoint.position, Quaternion.identity);
+        Vector3 force = throwForce;
+        force.x = movement.FacingRight ? throwForce.x : -throwForce.x;
+        corpse.GetComponent<Rigidbody2D>().AddForce(force);
+        corpsePickedUp = false;
+    }
+
     private void HandleCorpseCollision(Collider2D other)
     {
         if (other.CompareTag("Corpse"))
         {
             CorpseController corpse = other.GetComponent<CorpseController>();
-            float corpsePositionDelta = (corpse.ReferencePoint.position - referencePoint.position).x * (movement.FacingRight ? 1 : -1);
+            float corpsePositionDelta = (corpse.ReferencePoint.position - pickupReferencePoint.position).x * (movement.FacingRight ? 1 : -1);
             if (corpsePositionDelta > 0)
             {
                 if (corpseToPickupPositionDelta < 0 || corpseToPickupPositionDelta > corpsePositionDelta)
