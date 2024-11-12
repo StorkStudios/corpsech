@@ -18,6 +18,10 @@ public class PlayerGroundDetector : MonoBehaviour
     [SerializeField]
     private float wallCheckY;
 
+    [SerializeField, ReadOnly]
+    private Rigidbody2D currentMovingPlatform;
+    public Rigidbody2D CurrentMovingPlatform => currentMovingPlatform;
+
     public bool IsGrounded { get; private set; }
     public bool IsStandingOnCorpse { get; private set; }
     private bool lastGroundedState = false;
@@ -41,7 +45,8 @@ public class PlayerGroundDetector : MonoBehaviour
         RaycastHit2D rightHit = Physics2D.Raycast(transform.position + Vector3.up * wallCheckY, Vector3.right, wallCheckLength, LayerMask.GetMask("Ground"));
         RaycastHit2D leftHit = Physics2D.Raycast(transform.position + Vector3.up * wallCheckY, Vector3.left, wallCheckLength, LayerMask.GetMask("Ground"));
         int groundCollidersCountWithoutWalls = groundCollidersCount;
-        for(int i = 0; i < groundCollidersCount; i++)
+        currentMovingPlatform = null;
+        for (int i = 0; i < groundCollidersCount; i++)
         {
             if (groundCollidersBuffer[i] == rightHit.collider)
             {
@@ -51,8 +56,11 @@ public class PlayerGroundDetector : MonoBehaviour
             {
                 groundCollidersCountWithoutWalls--;
             }
+            if (groundCollidersBuffer[i].gameObject.CompareTag("MovingPlatform"))
+            {
+                currentMovingPlatform = groundCollidersBuffer[i].GetComponent<Rigidbody2D>();
+            }
         }
-        Debug.Log(groundCollidersCountWithoutWalls);
         IsGrounded = groundCollidersCountWithoutWalls > 0;
         if (IsGrounded != lastGroundedState)
         {

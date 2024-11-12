@@ -20,7 +20,6 @@ public class MovingPlatform : MonoBehaviour
     private float movementDuration;
 
     private Rigidbody2D rigidbody;
-    private float startTime;
     private float endTime;
 
     //It will be changed to opposite on Start() call
@@ -40,26 +39,17 @@ public class MovingPlatform : MonoBehaviour
             StartMovement();
             return;
         }
-        UpdateMovement();
-    }
-
-    private void UpdateMovement()
-    {
-        if (currentDirection == MovementDirection.Forward)
-        {
-            rigidbody.MovePosition(Vector3.Lerp(startPosition.position, endPosition.position, (Time.time - startTime) / movementDuration));
-        }
-        else
-        {
-            rigidbody.MovePosition(Vector3.Lerp(endPosition.position, startPosition.position, (Time.time - startTime) / movementDuration));
-        }
     }
 
     private void StartMovement()
     {
-        startTime = Time.time;
-        endTime = startTime + movementDuration;
+        endTime = Time.time + movementDuration;
         currentDirection = currentDirection == MovementDirection.Forward ? MovementDirection.Backward : MovementDirection.Forward;
         rigidbody.MovePosition(currentDirection == MovementDirection.Forward ? startPosition.position : endPosition.position);
+        rigidbody.velocity = (endPosition.position - startPosition.position).normalized * (endPosition.position - startPosition.position).magnitude / movementDuration;
+        if (currentDirection == MovementDirection.Backward)
+        {
+            rigidbody.velocity *= -1;
+        }
     }
 }
