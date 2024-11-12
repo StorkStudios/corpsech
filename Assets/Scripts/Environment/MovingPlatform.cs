@@ -20,7 +20,7 @@ public class MovingPlatform : MonoBehaviour
     private Transform endPosition;
     [SerializeField]
     private float movementDuration;
-
+    Rigidbody2D rigidbody;
     private float startTime;
     private float endTime;
 
@@ -30,6 +30,7 @@ public class MovingPlatform : MonoBehaviour
     private void Start()
     {
         StartMovement();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -46,11 +47,11 @@ public class MovingPlatform : MonoBehaviour
     {
         if (currentDirection == MovementDirection.Forward)
         {
-            transform.position = Vector3.Lerp(startPosition.position, endPosition.position, (Time.time - startTime) / movementDuration);
+            rigidbody.MovePosition(Vector3.Lerp(startPosition.position, endPosition.position, (Time.time - startTime) / movementDuration));
         }
         else
         {
-            transform.position = Vector3.Lerp(endPosition.position, startPosition.position, (Time.time - startTime) / movementDuration);
+            rigidbody.MovePosition(Vector3.Lerp(endPosition.position, startPosition.position, (Time.time - startTime) / movementDuration));
         }
     }
 
@@ -60,16 +61,5 @@ public class MovingPlatform : MonoBehaviour
         endTime = startTime + movementDuration;
         currentDirection = currentDirection == MovementDirection.Forward ? MovementDirection.Backward : MovementDirection.Forward;
         transform.position = currentDirection == MovementDirection.Forward ? startPosition.position : endPosition.position;
-    }
-    
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(transform.position.y<collision.transform.position.y-0.8f)
-            collision.transform.SetParent(transform);
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        collision.transform.SetParent(null);
     }
 }
