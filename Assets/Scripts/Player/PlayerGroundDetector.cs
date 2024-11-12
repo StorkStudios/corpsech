@@ -13,6 +13,10 @@ public class PlayerGroundDetector : MonoBehaviour
     private Transform detectionPosition;
     [SerializeField]
     private LayerMask groundLayers;
+    [SerializeField]
+    private float wallCheckLength;
+    [SerializeField]
+    private float wallCheckY;
 
     public bool IsGrounded { get; private set; }
     public bool IsStandingOnCorpse { get; private set; }
@@ -34,7 +38,22 @@ public class PlayerGroundDetector : MonoBehaviour
     {
         lastGroundedState = IsGrounded;
         int groundCollidersCount = Physics2D.OverlapBoxNonAlloc(detectionPosition.position, detectionSize, 0, groundCollidersBuffer, groundLayers);
-        IsGrounded = groundCollidersCount > 0;
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + Vector3.up * wallCheckY, Vector3.right, wallCheckLength, LayerMask.GetMask("Ground"));
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position + Vector3.up * wallCheckY, Vector3.left, wallCheckLength, LayerMask.GetMask("Ground"));
+        int groundCollidersCountWithoutWalls = groundCollidersCount;
+        for(int i = 0; i < groundCollidersCount; i++)
+        {
+            if (groundCollidersBuffer[i] == rightHit.collider)
+            {
+                groundCollidersCountWithoutWalls--;
+            }
+            else if (groundCollidersBuffer[i] == leftHit.collider)
+            {
+                groundCollidersCountWithoutWalls--;
+            }
+        }
+        Debug.Log(groundCollidersCountWithoutWalls);
+        IsGrounded = groundCollidersCountWithoutWalls > 0;
         if (IsGrounded != lastGroundedState)
         {
             GroundStateChanged?.Invoke(IsGrounded);
@@ -46,5 +65,7 @@ public class PlayerGroundDetector : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(detectionPosition.position, detectionSize);
+        Gizmos.DrawLine(transform.position + Vector3.up * wallCheckY, transform.position + Vector3.up * wallCheckY + Vector3.right * wallCheckLength);
+        Gizmos.DrawLine(transform.position + Vector3.up * wallCheckY, transform.position + Vector3.up * wallCheckY + Vector3.left * wallCheckLength);
     }
 }

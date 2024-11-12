@@ -17,10 +17,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
-    [Header("Jump config")]
-    [SerializeField]
-    private float maxJumpVelocity;
-
     private Rigidbody2D rb;
     private float horizontalInput;
     private PlayerGroundDetector groundDetector;
@@ -40,8 +36,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
 
         if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) &&
-            groundDetector.IsGrounded &&
-            Mathf.Abs(rb.velocity.y) <= maxJumpVelocity)
+            groundDetector.IsGrounded)
         {
             Jump();
         }

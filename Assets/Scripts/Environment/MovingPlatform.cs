@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UIElements;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MovingPlatform : MonoBehaviour
 {
     [System.Serializable]
@@ -20,7 +18,8 @@ public class MovingPlatform : MonoBehaviour
     private Transform endPosition;
     [SerializeField]
     private float movementDuration;
-    Rigidbody2D rigidbody;
+
+    private Rigidbody2D rigidbody;
     private float startTime;
     private float endTime;
 
@@ -29,8 +28,9 @@ public class MovingPlatform : MonoBehaviour
 
     private void Start()
     {
-        StartMovement();
         rigidbody = GetComponent<Rigidbody2D>();
+
+        StartMovement();
     }
 
     private void Update()
@@ -60,6 +60,6 @@ public class MovingPlatform : MonoBehaviour
         startTime = Time.time;
         endTime = startTime + movementDuration;
         currentDirection = currentDirection == MovementDirection.Forward ? MovementDirection.Backward : MovementDirection.Forward;
-        transform.position = currentDirection == MovementDirection.Forward ? startPosition.position : endPosition.position;
+        rigidbody.MovePosition(currentDirection == MovementDirection.Forward ? startPosition.position : endPosition.position);
     }
 }
