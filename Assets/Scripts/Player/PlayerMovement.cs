@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerGroundDetector))]
@@ -10,12 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float jumpForce = 10f;
 
-    [Header("Ground Check")]
+    [Header("References")]
     [SerializeField]
-    private Transform groundCheck;
-
-    [SerializeField]
-    private LayerMask groundLayer;
+    private PlayerAnimationController animationController;
 
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -34,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
+        animationController.SetWalkState(!Mathf.Approximately(horizontalInput, 0));
 
         if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) &&
             groundDetector.IsGrounded)
@@ -51,12 +50,13 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = scale;
         if (groundDetector.CurrentMovingPlatform != null)
         {
-            rb.velocity += new Vector2(groundDetector.CurrentMovingPlatform.velocity.x, 0);        
+            rb.velocity += new Vector2(groundDetector.CurrentMovingPlatform.velocity.x, 0);
         }
     }
 
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        animationController.Jump();
     }
 }

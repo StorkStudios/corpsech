@@ -56,11 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpForce: 5
-  groundCheck: {fileID: 6360221171704593357}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  maxJumpVelocity: 0
+  animationController: {fileID: 564546181503636139}
   facingRight: 0
 --- !u!50 &2459086787510083149
 Rigidbody2D:
@@ -179,6 +175,7 @@ MonoBehaviour:
     m_Bits: 64
   wallCheckLength: 0.7
   wallCheckY: -0.45
+  currentMovingPlatform: {fileID: 0}
 --- !u!114 &3773263419224540571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +265,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7032327608702029690}
   - component: {fileID: 5250358944356861705}
+  - component: {fileID: 6804792975092383544}
+  - component: {fileID: 564546181503636139}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -284,8 +283,8 @@ Transform:
   m_GameObject: {fileID: 3246031921074179178}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0.47, y: 0.48, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4171496862057984338}
@@ -331,7 +330,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 114a584cc0451c84d9ffda0b4273e086, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -342,6 +341,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6804792975092383544
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3246031921074179178}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b9a0ff71c7d45ea7699b353da2d481b7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &564546181503636139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3246031921074179178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a14641755835dfe8fcb1cb46c7a5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7083138397857016351
 GameObject:
   m_ObjectHideFlags: 0
