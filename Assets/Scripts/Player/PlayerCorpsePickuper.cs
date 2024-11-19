@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCorpsePickuper : MonoBehaviour
 {
+    [Header("Config")]
     [SerializeField]
     private Transform pickupReferencePoint;
     [SerializeField]
@@ -12,6 +13,11 @@ public class PlayerCorpsePickuper : MonoBehaviour
     private Vector3 throwForce;
     [SerializeField]
     private GameObject corpsePrefab;
+
+    [Header("References")]
+    [SerializeField]
+    private PlayerAnimationController animationController;
+
 
     private CorpseController corpseToPickup;
     private float corpseToPickupPositionDelta = float.NegativeInfinity;
@@ -65,6 +71,8 @@ public class PlayerCorpsePickuper : MonoBehaviour
         Destroy(corpseToPickup.gameObject);
         corpseToPickup = null;
         corpseToPickupPositionDelta = float.NegativeInfinity;
+        animationController.Pickup();
+        animationController.SetHasBody(true);
     }
 
     private void ThrowCorpse()
@@ -74,6 +82,8 @@ public class PlayerCorpsePickuper : MonoBehaviour
         force.x = movement.FacingRight ? throwForce.x : -throwForce.x;
         corpse.GetComponent<Rigidbody2D>().AddForce(force);
         corpsePickedUp = false;
+        animationController.Throw();
+        animationController.SetHasBody(false);
     }
 
     private void HandleCorpseCollision(Collider2D other)

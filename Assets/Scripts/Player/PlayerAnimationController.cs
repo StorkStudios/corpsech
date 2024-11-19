@@ -31,4 +31,9 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetBool("Walk", walk);
     }
+
+    public void SetHasBody(bool hasBody)
+    {
+        animator.SetBool("HasBody", hasBody);
+    }
 }
