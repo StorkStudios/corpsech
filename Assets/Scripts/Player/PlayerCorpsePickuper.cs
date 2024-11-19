@@ -30,6 +30,7 @@ public class PlayerCorpsePickuper : MonoBehaviour
     private void Start()
     {
         movement = GetComponent<PlayerMovement>();
+        animationController.corpseThrowEvent += ThrowCorpse;
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class PlayerCorpsePickuper : MonoBehaviour
             }
             else if (corpsePickedUp)
             {
-                ThrowCorpse();
+                animationController.Throw();
             }
         }
     }
@@ -82,7 +83,6 @@ public class PlayerCorpsePickuper : MonoBehaviour
         force.x = movement.FacingRight ? throwForce.x : -throwForce.x;
         corpse.GetComponent<Rigidbody2D>().AddForce(force);
         corpsePickedUp = false;
-        animationController.Throw();
         animationController.SetHasBody(false);
     }
 

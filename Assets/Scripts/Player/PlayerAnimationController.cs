@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimationController : MonoBehaviour
 {
+    public event System.Action corpseThrowEvent;
+
     private Animator animator;
 
     private void Start()
@@ -35,5 +37,11 @@ public class PlayerAnimationController : MonoBehaviour
     public void SetHasBody(bool hasBody)
     {
         animator.SetBool("HasBody", hasBody);
+    }
+
+    //Called by an animation event
+    private void ThrowCorpseEvent()
+    {
+        corpseThrowEvent?.Invoke();
     }
 }
