@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1709021312983637889}
   - component: {fileID: 7941198951971907191}
   - component: {fileID: 3773263419224540571}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2574336647537359465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ThrowReferencePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 496546054586607164}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PickupReferencePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 5250358944356861705}
   - component: {fileID: 6804792975092383544}
   - component: {fileID: 564546181503636139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6360221171704593357}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
