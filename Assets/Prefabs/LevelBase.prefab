@@ -98,10 +98,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.04625
-    y: 0.13666667
-    width: 0.79999995
-    height: 0.6
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_AssetsPPU: 32
   m_RefResolutionX: 640
   m_RefResolutionY: 360
-  m_CropFrame: 3
+  m_CropFrame: 4
   m_GridSnapping: 0
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -388,6 +388,18 @@ PrefabInstance:
     - target: {fileID: 2344786964754640678, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691055387342376958, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 6135045240727377978}
+    - target: {fileID: 5691055387342376958, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691055387342376958, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
