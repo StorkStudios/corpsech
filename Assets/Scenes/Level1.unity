@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 3188138679729367060, guid: 5242d10485dcd61dcb0f2d8f67a10304, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6053007739034215102, guid: 5242d10485dcd61dcb0f2d8f67a10304, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -325,6 +329,10 @@ PrefabInstance:
     - target: {fileID: 1494545370434780599, guid: 125b6aa9eab8158498cb14b07e34d72e, type: 3}
       propertyPath: m_Name
       value: LevelEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494545370434780599, guid: 125b6aa9eab8158498cb14b07e34d72e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4061427735004753276, guid: 125b6aa9eab8158498cb14b07e34d72e, type: 3}
       propertyPath: nextLevel

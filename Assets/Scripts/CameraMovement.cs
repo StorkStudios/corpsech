@@ -16,6 +16,12 @@ public class CameraMovement : MonoBehaviour
             PlayerSpawner.PlayerSpawnedEventArgs spawnArgs = (PlayerSpawner.PlayerSpawnedEventArgs)args;
             playerTransform = spawnArgs.PlayerTransform;
         });
+        MessageBroker.Instance.Events.AddListener(MessageBroker.EventType.PlayerDeath, (_) =>
+
+        {
+            playerTransform = FindObjectOfType<PlayerSpawner>().transform;
+        });
+        playerTransform = FindObjectOfType<PlayerSpawner>().transform;
     }
 
     private void LateUpdate()
