@@ -7,36 +7,48 @@ public class PlayerAnimationController : MonoBehaviour
 {
     public event System.Action corpseThrowEvent;
 
-    private Animator animator;
+    private Animator PlayerAnimator
+    {
+        set => playerAnimator = value;
+        get
+        {
+            if (playerAnimator == null)
+            {
+                playerAnimator = GetComponent<Animator>();
+            }
+            return playerAnimator;
+        }
+    }
+    private Animator playerAnimator;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        PlayerAnimator = GetComponent<Animator>();
     }
 
     public void Jump()
     {
-        animator.SetTrigger("Jump");
+        PlayerAnimator.SetTrigger("Jump");
     }
 
     public void Throw()
     {
-        animator.SetTrigger("Throw");
+        PlayerAnimator.SetTrigger("Throw");
     }
 
     public void Pickup()
     {
-        animator.SetTrigger("Pickup");
+        PlayerAnimator.SetTrigger("Pickup");
     }
 
     public void SetWalkState(bool walk)
     {
-        animator.SetBool("Walk", walk);
+        PlayerAnimator.SetBool("Walk", walk);
     }
 
     public void SetHasBody(bool hasBody)
     {
-        animator.SetBool("HasBody", hasBody);
+        PlayerAnimator.SetBool("HasBody", hasBody);
     }
 
     //Called by an animation event
