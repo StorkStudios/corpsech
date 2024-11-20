@@ -1,7 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerGroundDetector))]
+[RequireComponent(typeof(PlayerCorpsePickuper))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float horizontalInput;
     private PlayerGroundDetector groundDetector;
+    private PlayerCorpsePickuper corpsePickuper;
 
     [SerializeField, ReadOnly]
     private bool facingRight;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         groundDetector = GetComponent<PlayerGroundDetector>();
+        corpsePickuper = GetComponent<PlayerCorpsePickuper>();
     }
 
     private void Update()
@@ -35,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
         animationController.SetWalkState(!Mathf.Approximately(horizontalInput, 0));
 
         if ((Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1) &&
-            groundDetector.IsGrounded)
+            groundDetector.IsGrounded &&
+            !corpsePickuper.CorpsePickedUp)
         {
             Jump();
         }

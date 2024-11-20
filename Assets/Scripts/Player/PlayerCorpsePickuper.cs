@@ -26,6 +26,7 @@ public class PlayerCorpsePickuper : MonoBehaviour
 
     [SerializeField, ReadOnly]
     private bool corpsePickedUp;
+    public bool CorpsePickedUp => corpsePickedUp;
 
     private void Start()
     {
