@@ -401,6 +401,14 @@ PrefabInstance:
       propertyPath: m_PixelPerfect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5691055387342376958, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463345934291209173, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
