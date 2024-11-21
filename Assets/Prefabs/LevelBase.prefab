@@ -354,15 +354,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.4220104
+    x: 0
     y: 0
-    width: 0.45599848
-    height: 0.4560863
+    width: 0.9998075
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -685,6 +685,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6792958538829920944}
     m_Modifications:
+    - target: {fileID: 93742555018267694, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 93742555018267694, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 900316955625835155, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -725,9 +733,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 920901273229288122, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 2344786964754640678, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170937548081583820, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170937548081583820, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170937548081583820, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170937548081583820, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170937548081583820, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442155691403796573, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442155691403796573, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5691055387342376958, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
       propertyPath: m_Camera
@@ -744,6 +784,26 @@ PrefabInstance:
     - target: {fileID: 5691055387342376958, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397191455515497807, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397191455515497807, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397191455515497807, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397191455515497807, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397191455515497807, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8463345934291209173, guid: 2f2a5262684c43546a444cb701de35a4, type: 3}
       propertyPath: m_LocalPosition.z

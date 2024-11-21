@@ -444,26 +444,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelBase
       objectReference: {fileID: 0}
-    - target: {fileID: 6135045240727377978, guid: 4efd751b317c1762388837372f211a50, type: 3}
-      propertyPath: orthographic size
-      value: 5.625
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135045240727377978, guid: 4efd751b317c1762388837372f211a50, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135045240727377978, guid: 4efd751b317c1762388837372f211a50, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135045240727377978, guid: 4efd751b317c1762388837372f211a50, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9998075
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135045240727377978, guid: 4efd751b317c1762388837372f211a50, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6792958538829920944, guid: 4efd751b317c1762388837372f211a50, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
